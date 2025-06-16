@@ -1,0 +1,14 @@
+[tool.black]
+line-length = 131
+exclude = '''
+/(
+    \.git
+    | \.venv
+    | \.idea
+    | __pycache__
+)/
+'''
+
+[tool.pytest_env]
+APP_ENV = "testing"
+DATABASE_URL = "sqlite:///:memory:"
