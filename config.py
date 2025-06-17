@@ -23,5 +23,6 @@ class Settings(BaseSettings):
     ADMIN_EMAIL: str = os.environ.get("ADMIN_EMAIL", "")
 
     SAP_URL: str = os.environ.get("SAP_URL", "")
+    OPENAI_API_KEY: str = ""
 
     model_config = SettingsConfigDict(extra="allow", env_file=(".env"))

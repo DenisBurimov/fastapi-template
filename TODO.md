@@ -3,10 +3,11 @@ Features to be done
 - v shell
 - v html templates
 - v css
+- v dokcerize app
+- v postgres db container
+- ui login
 - htmx
-- dokcerize app
-- postgres db container
-- Active Directory auth
+- ollama
 
 
 tar -czf tailwind_toolchain.tgz \

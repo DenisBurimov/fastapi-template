@@ -1,4 +1,11 @@
-## Create migrations
+## After git clone
+```
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+## Create migrations (if models are changed)
 ```
 inv db-migrate --message=001_init
 ```
@@ -6,6 +13,11 @@ inv db-migrate --message=001_init
 ## Migrate database
 ```
 inv db-upgrade
+```
+
+## Check the database
+```
+inv get-users
 ```
 
 ## Run CSS watcher
