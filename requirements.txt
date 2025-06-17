@@ -2,10 +2,12 @@ fastapi[all]
 python-dotenv
 python-jose[cryptography]
 passlib[bcrypt]
-ldap3
-uvicorn
 sqlmodel
 alembic
+psycopg2-binary
+pytest 
+ldap3
+uvicorn
 jinja2
 python-multipart
 aiofiles

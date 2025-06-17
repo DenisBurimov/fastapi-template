@@ -3,14 +3,18 @@ from sqlmodel import Session, select
 from app import models as m
 from app.database import engine
 from config import Settings
+import logging
 
 
 CFG = Settings()
 
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(filename)s - %(levelname)s - %(message)s")
+
 
 @task
 def get_users(c):
-    """Print all users in the database."""
+    logger.info("DATABASE_URL: %s", CFG.DATABASE_URL)
     with Session(engine) as session:
         users = session.scalars(select(m.User)).all()
         if not users:

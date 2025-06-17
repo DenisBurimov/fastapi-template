@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request
 from pathlib import Path
 
+from dotenv import load_dotenv
 from fastapi.exceptions import RequestValidationError
 from fastapi.staticfiles import StaticFiles
 from starlette.responses import JSONResponse
@@ -17,6 +18,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(filename)s - %(l
 
 def create_app(session_dependency: Callable[[], Session] = get_session) -> FastAPI:
     app = FastAPI()
+    load_dotenv()
     app.dependency_overrides[get_session] = session_dependency
     base_dir = Path(__file__).resolve().parent
     static_dir = base_dir / "static"

@@ -1,4 +1,7 @@
-def test_root(client):
+from fastapi.testclient import TestClient
+
+
+def test_root(client: TestClient):
     response = client.get("/health")
     assert response.status_code == 200
     response_data = response.json()

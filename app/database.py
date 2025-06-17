@@ -7,11 +7,9 @@ CFG = Settings()
 connect_args = {"check_same_thread": False}
 
 if CFG.APP_ENV == "testing":
-    database_url = CFG.TESTING_DATABASE_URL
+    engine = create_engine(CFG.TESTING_DATABASE_URL, connect_args=connect_args)
 else:
-    database_url = CFG.DATABASE_URL
-
-engine = create_engine(database_url, connect_args=connect_args)
+    engine = create_engine(CFG.DATABASE_URL)
 
 
 def get_session():
