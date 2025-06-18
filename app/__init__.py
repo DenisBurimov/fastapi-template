@@ -4,21 +4,27 @@ from pathlib import Path
 from dotenv import load_dotenv
 from fastapi.exceptions import RequestValidationError
 from fastapi.staticfiles import StaticFiles
+from starlette.middleware.sessions import SessionMiddleware
 from starlette.responses import JSONResponse
 from starlette.routing import Mount
 
+from config import Settings
 from .database import get_session
 from sqlmodel import Session
 from typing import Callable
 import logging
+
+
+CFG = Settings()
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(filename)s - %(levelname)s - %(message)s")
 
 
 def create_app(session_dependency: Callable[[], Session] = get_session) -> FastAPI:
-    app = FastAPI()
     load_dotenv()
+    app = FastAPI()
+    app.add_middleware(SessionMiddleware, secret_key=CFG.SECRET_KEY)
     app.dependency_overrides[get_session] = session_dependency
     base_dir = Path(__file__).resolve().parent
     static_dir = base_dir / "static"
@@ -27,10 +33,11 @@ def create_app(session_dependency: Callable[[], Session] = get_session) -> FastA
         app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
     from .routers import api_auth_router
-    from .views import main_router
+    from .views import main_router, auth_router
 
     app.include_router(api_auth_router)
     app.include_router(main_router)
+    app.include_router(auth_router)
 
     @app.exception_handler(RequestValidationError)
     async def validation_exception_handler(request: Request, exc: RequestValidationError):

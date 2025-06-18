@@ -6,6 +6,7 @@ from pathlib import Path
 class Settings(BaseSettings):
     APP_ENV: str = "development"
     APP_FOLDER: str = str(Path(__file__).resolve().parent)
+    SECRET_KEY: str = "very_strong_secret_key"
     DATABASE_URL: str = "sqlite:///db.sqlite3"
     TESTING_DATABASE_URL: str = "sqlite:///:memory:"
 
