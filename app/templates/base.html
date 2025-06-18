@@ -4,12 +4,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <script src="{{ url_for('static', path='js/htmx.min.js') }}" type="text/javascript" defer></script>
   <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}">
 </head>
 
 <body>
-  <!--<div>global_var_test: {{ global_var_test }}</div>-->
+  {% include 'header.html' %}
 
+  {% block body %}
+  {% endblock %}
+
+  <script src="{{ url_for('static', path='js/base.js') }}" type="text/javascript" defer></script>
 </body>
 
 </html>

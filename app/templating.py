@@ -7,4 +7,4 @@ TEMPLATE_DIR = os.path.join(os.path.dirname(__file__), "templates")
 
 templates = Jinja2Templates(directory=TEMPLATE_DIR)
 
-templates.env.globals["global_var_test"] = "global_var_test"
+templates.env.globals["APP_NAME"] = "JARVIS"

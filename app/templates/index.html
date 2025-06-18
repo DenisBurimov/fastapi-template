@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block body %}
 
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-  <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}">
+{% include 'chat_button.html' %}
+{% include 'modal.html' %}
 
-<body>
-  <h1 class="bg-gray-700">Home Page</h1>
-  <div>testing_index_variable: {{ testing_index_variable }}</div>
-  <div>global_var_test: {{ global_var_test }}</div>
-
-</body>
-
-</html>
+{% endblock %}

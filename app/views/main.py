@@ -15,3 +15,13 @@ async def index(request: Request):
             "testing_index_variable": "Testing Index Page",
         },
     )
+
+
+@main_router.get("/get_history", response_class=HTMLResponse)
+async def get_history(request: Request):
+    return templates.TemplateResponse("chat/history.html", {"request": request})
+
+
+@main_router.post("/send_message", response_class=HTMLResponse)
+async def send_message(request: Request):
+    return templates.TemplateResponse("chat/history.html", {"request": request})
