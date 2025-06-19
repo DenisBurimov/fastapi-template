@@ -1,12 +1,14 @@
 from fastapi import APIRouter, Depends, Request
 from app.templating import templates
 from fastapi.responses import HTMLResponse
+from app.dependencies import login_required
 
 
 main_router = APIRouter()
 
 
 @main_router.get("/", response_class=HTMLResponse)
+@login_required
 async def index(request: Request):
     return templates.TemplateResponse(
         "index.html",

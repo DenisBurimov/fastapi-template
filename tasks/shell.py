@@ -14,15 +14,18 @@ sys.path.insert(0, str(PROJECT_ROOT))
 def shell(c):
     from app import create_app, models as m
     from app.database import engine
+    from config import Settings
 
     app = create_app()
     session = Session(engine)
+    CFG = Settings()
 
     context = {
         "app": app,
         "session": session,
         "m": m,
-        "s": select,
+        "select": select,
+        "CFG": CFG,
     }
     # embed(user_ns=context, colors="Linux")
     embed(user_ns=context, colors="LightBG")
