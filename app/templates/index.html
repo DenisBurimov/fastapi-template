@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block body %}
 
+<p class="text-center">{{ current_user() }}</p>
+
 {% include 'chat/chat_button.html' %}
 {% include 'chat/modal.html' %}
 

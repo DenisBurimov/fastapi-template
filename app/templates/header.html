@@ -17,7 +17,15 @@
         <div class="w-full flex justify-around">
             <p class="cursor-pointer">mozart</p>
 
-            <p class="cursor-pointer">login</p>
+            {% if current_user() %}
+            <a href="{{ url_for('logout') }}">
+                <p class="cursor-pointer">logout</p>
+            </a>
+            {% else %}
+            <a href="{{ url_for('login') }}">
+                <p class="cursor-pointer">login</p>
+            </a>
+            {% endif %}
         </div>
     </div>
 
@@ -28,7 +36,7 @@
                     <img src="{{ url_for('static', path='img/logo.svg')}}" alt="picture" class="w-full">
                 </div>
                 <div class="pl-2">
-                    <p id="ukrsib">UKRSIBBANK</p>
+                    <p id="ukrsib">ABCDEFGJIH</p>
                     <p id="aura">{{ APP_NAME }}</p>
                 </div>
             </div>

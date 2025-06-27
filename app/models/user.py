@@ -2,6 +2,7 @@ import enum
 from typing import Optional
 from sqlmodel import SQLModel, Field, Column, String
 from passlib.context import CryptContext
+from uuid import uuid4
 
 
 crypt_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -13,10 +14,14 @@ class UserRole(str, enum.Enum):
     viewer = "viewer"
 
 
+def gen_uuid():
+    return str(uuid4)
+
+
 class User(SQLModel, table=True):
     __tablename__ = "users"
 
-    id: Optional[int] = Field(default=None, primary_key=True)
+    uid: Optional[str] = Field(default_factory=gen_uuid, sa_column=Column(String(36), unique=True, primary_key=True))
     name: str = Field(sa_column=Column(String(32), nullable=False, unique=True))
     email: str = Field(sa_column=Column(String(255), nullable=False))
     role: str = Field(default=UserRole.viewer.value, sa_column=Column(String(12), default=UserRole.viewer.value))
